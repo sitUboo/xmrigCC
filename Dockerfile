@@ -13,7 +13,7 @@ RUN wget https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.
         ./bootstrap.sh --with-libraries=system && \
         ./b2 --toolset=gcc-7 && ./b2 link=static runtime-link=static install --toolset=gcc-7 && \
         git clone https://github.com/Bendr0id/xmrigCC.git && \
-        cd xmrigCC && cmake . -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7 -DWITH_CC_SERVER=OFF \
+	cd xmrigCC && cmake . -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7 -DWITH_CC_SERVER=OFF \
         -DWITH_TLS=OFF -DWITH_HTTPD=OFF -DWITH_HWLOC=OFF -DBOOST_ROOT=~/xmrigCC/boost_1_75_0  &&  make
-
-ENTRYPOINT  ["/boost_1_75_0/xmrigCC/xmrigDaemon"]
+	
+ENTRYPOINT  ["/boost_1_75_0/xmrigCC/xmrigDaemon","--config=/tmp/config.json"]
